@@ -15,6 +15,9 @@ typedef struct {
   point pkP;
 } encrypted_letter;
 
+point add_points(point p, point q);
+point mul_point(point p, int k);
+point neg(point p);
 encrypted_letter encrypt_letter(point p, int k);
 point decrypt_letter(encrypted_letter l);
 void print_point(point p);

@@ -30,6 +30,7 @@ int main() {
     for (int j = 0; j < ALPHABET_SIZE; ++j) {
       if (__alphabet[j].letter == ch) {
         encrypted_word[k] = encrypt_letter(__alphabet[j].p, K_VALUES[k]);
+        printf("{%3d, %3d}, {%3d, %3d}\n", encrypted_word[k].kG.x, encrypted_word[k].kG.y, encrypted_word[k].pkP.x, encrypted_word[k].pkP.y);
         break;
       }
     }
@@ -40,7 +41,7 @@ int main() {
 #endif
 
   printf("Decrypt\n");
-  uint16_t *word = (uint16_t *)malloc(sizeof(uint16_t) * (k + 1));
+  uint16_t *word = (uint16_t *)malloc(sizeof(uint16_t) * k);
   for (int i = 0; i < k; ++i) {
     decrypted_word[i] = decrypt_letter(encrypted_word[i]);
     for (int j = 0; j < ALPHABET_SIZE; ++j) {
@@ -51,10 +52,9 @@ int main() {
       }
     }
   }
-  *(word + k) = '\0';
 
-  printf("UTF8: ");
-  for (int i = DECRYPT; i < k; ++i) {
+  printf("UTF8 : ");
+  for (int i = 0; i < k; ++i) {
     printf("%x", *(word + i));
   }
   printf("\n");
